@@ -1,16 +1,18 @@
-#4.2.3 미니배치 학습
-import sys, os
-sys.path.append(os.pardir)
+#4.2.4 배치용 교차 엔트로피 오차 구현하기
 import numpy as np
-from MNIST.mnist import load_mnist
 
-(x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, one_hot_label=True)
+def cross_entropy_error1(y, t):
+    if y.ndim == 1:
+        t = t.reshape(1, t.size)
+        y = y.reshape(1, y.size)
 
-train_size = x_train.shape[0]
-batch_size = 10
-batch_mask = np.random.choice(train_size, batch_size)
-x_batch = x_train[batch_mask]
-t_batch = t_train[batch_mask]
+    batch_size = y.shape[0]
+    retrun -np.sum(t * np.log(y + 1e-7)) / batch_size
 
-out = np.random.choice(60000, 10)
-print(out)
+def cross_entropy_error(y, t):
+    if y.ndim == 1:
+        t = t.reshape
+        y = y.reshape
+
+    batch_size = y.shape[0]
+    return -np.sum(np.log(y[np.arrange(batch_size), t] + 1e-7)) / batch_size
